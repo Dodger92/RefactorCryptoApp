@@ -44,7 +44,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.2'
 
     def lifecycle_version = "2.2.0"
-
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
