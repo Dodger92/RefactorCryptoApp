@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.example.cryptoapp.data.api.ApiFactory
 import com.example.cryptoapp.data.database.AppDatabase
 import com.example.cryptoapp.data.pojo.CoinPriceInfo
@@ -11,6 +12,7 @@ import com.example.cryptoapp.data.pojo.CoinPriceInfoRawData
 import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
 class CoinViewModel(application: Application) : AndroidViewModel(application) {
@@ -29,7 +31,10 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun loadData() {
-        val disposable = ApiFactory.apiService.getTopCoinsInfo(limit = 50)
+        viewModelScope.launch {
+
+        }
+        /*val disposable = ApiFactory.apiService.getTopCoinsInfo(limit = 50)
             .map { it.data?.map { it.coinInfo?.name }?.joinToString(",") }
             .flatMap { ApiFactory.apiService.getFullPriceList(fSyms = it) }
             .map { getPriceListFromRawData(it) }
@@ -43,7 +48,7 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
             }, {
                 Log.d("TEST_OF_LOADING_DATA", "Failure: ${it.message}")
             })
-        compositeDisposable.add(disposable)
+        compositeDisposable.add(disposable)*/
     }
 
     private fun getPriceListFromRawData(
